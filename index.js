@@ -58,7 +58,17 @@ async function run(){
         const books= await cursor.toArray();
         res.send(books);
     })  
+     
+    //delet api
 
+    app.delete('/books/:id', async (req, res) => {
+        const id = req.params.id;
+        const query = { _id: ObjectId(id) };
+        const result = await bookingCollection.deleteOne(query);
+        res.json(result);
+    })
+
+    
     
     }
     finally{
